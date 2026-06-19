@@ -1,1 +1,19 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudbees-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudbees-demo
+  template:
+    metadata:
+      labels:
+        app: cloudbees-demo
+    spec:
+      containers:
+      - name: cloudbees-demo
+        image: <AWS_ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/cbci-demo-app:latest
+        ports:
+        - containerPort: 5000
